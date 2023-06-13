@@ -38,7 +38,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label class="form-control-label" for="exampleFormControlTextarea1">Deskripsi</label>
-              <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3" placeholder="Lorem Ipsum"></textarea>
+              <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="6" placeholder="Lorem Ipsum"></textarea>
               @error('description')
               <span class="text-danger font-weight-bold text-sm">
                 {{ $message }}
@@ -47,7 +47,8 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="form-group">
+            <div class="row-12">
+              <div class="form-group">
               <label class="form-control-label" for="example2cols1Input">Harga Obat</label>
               <input type="number" name="price" class="form-control  @error('price') is-invalid @enderror" id="example2cols1Input" placeholder="5000">
               @error('price')
@@ -55,7 +56,20 @@
                 {{ $message }}
               </span>
               @enderror
+              </div>
             </div>
+            <div class="row-12">
+              <div class="form-group">
+              <label class="form-control-label" for="example2cols1Input">Stok Obat</label>
+              <input type="number" name="price" class="form-control  @error('price') is-invalid @enderror" id="example2cols1Input" placeholder="5000">
+              @error('price')
+              <span class="text-danger font-weight-bold text-sm">
+                {{ $message }}
+              </span>
+              @enderror
+              </div>
+            </div>
+            
           </div>
         </div>
         <button class="btn btn-icon btn-primary" type="submit">

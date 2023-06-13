@@ -50,7 +50,8 @@ class DrugController extends Controller
         [
             'name' => 'required',
             'description' => 'required',
-            'price' => 'required'
+            'price' => 'required',
+            'stock' => 'required'
         ],
         [
             'required' => ':attribute harus diisi.',
@@ -66,6 +67,7 @@ class DrugController extends Controller
             $drug->description = $request->description;
             $drug->type_id = $request->type_id;
             $drug->price = $request->price;
+            $drug->stock = $request->stock;
             $drug->save();
 
             return redirect('/back-staff/drug')->withStatus('Berhasil menambah data.');
@@ -110,7 +112,8 @@ class DrugController extends Controller
         [
             'name' => 'required',
             'description' => 'required',
-            'price' => 'required'
+            'price' => 'required',
+            'stock' => 'required'
         ],
         [
             'required' => ':attribute harus diisi.',
@@ -126,6 +129,7 @@ class DrugController extends Controller
             $drug->description = $request->description;
             $drug->type_id = $request->type_id;
             $drug->price = $request->price;
+            $drug->stock = $request->stock;
             $drug->save();
             return redirect('/back-staff/drug')->withStatus('Berhasil memperbarui data.');
         } catch(\Throwable $e){

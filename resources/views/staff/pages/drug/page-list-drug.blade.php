@@ -17,6 +17,7 @@
                 <th>Deskripsi Obat</th>
                 <th>Jenis Obat</th>
                 <th>Harga Obat</th>
+                <th>Stok Obat</th>
                 <th>Opsi</th>
             </tr>
             </thead>
@@ -29,6 +30,7 @@
                 <td>{{ $item->description }}</td>
                 <td>{{ $item->type->name }}</td>
                 <td>{{ $item->price }}</td>
+                <td>{{ $item->stock }}</td>
                 <td>
                     <div class="row">
                         <form method="POST" class="inline mr-2" action="{{ url('back-staff/drug/edit',$item->id) }}">

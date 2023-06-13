@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('staff.layouts.app')
 @section('content')
 <div class="container-fluid mt--6">
   <div class="card mb-4">
@@ -39,7 +39,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label class="form-control-label" for="exampleFormControlTextarea1">Deskripsi</label>
-              <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3" placeholder="Lorem Ipsum">{{ $getDetailDrug->description }}</textarea>
+              <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="6" placeholder="Lorem Ipsum">{{ $getDetailDrug->description }}</textarea>
               @error('description')
               <span class="text-danger font-weight-bold text-sm">
                 {{ $message }}
@@ -48,7 +48,8 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="form-group">
+            <div class="row-12">
+              <div class="form-group">
               <label class="form-control-label" for="example2cols1Input">Harga Obat</label>
               <input type="number" name="price" class="form-control  @error('price') is-invalid @enderror" id="example2cols1Input" placeholder="5000" value="{{ $getDetailDrug->price }}">
               @error('price')
@@ -56,6 +57,18 @@
                 {{ $message }}
               </span>
               @enderror
+            </div>
+            </div>
+            <div class="row-12">
+              <div class="form-group">
+              <label class="form-control-label" for="example2cols1Input">Stok Obat</label>
+              <input type="number" name="stock" class="form-control  @error('stock') is-invalid @enderror" id="example2cols1Input" placeholder="5000" value="{{ $getDetailDrug->stock }}">
+              @error('stock')
+              <span class="text-danger font-weight-bold text-sm">
+                {{ $message }}
+              </span>
+              @enderror
+            </div>
             </div>
           </div>
         </div>

@@ -17,6 +17,7 @@ class DrugSeeder extends Seeder
         $drug->description = 'Lorem ipsum dolor sit amet';
         $drug->type_id = 1;
         $drug->price = 5000;
+        $drug->stock = 1000;
         $drug->created_at = now();
         $drug->updated_at = now();
         $drug->save();
@@ -26,6 +27,7 @@ class DrugSeeder extends Seeder
         $drug->description = 'Lorem ipsum dolor sit amet';
         $drug->type_id = 2;
         $drug->price = 7000;
+        $drug->stock = 5000;
         $drug->created_at = now();
         $drug->updated_at = now();
         $drug->save();
@@ -35,6 +37,7 @@ class DrugSeeder extends Seeder
         $drug->description = 'Lorem ipsum dolor sit amet';
         $drug->type_id = 3;
         $drug->price = 15000;
+        $drug->stock = 500;
         $drug->created_at = now();
         $drug->updated_at = now();
         $drug->save();
@@ -44,6 +47,7 @@ class DrugSeeder extends Seeder
         $drug->description = 'Lorem ipsum dolor sit amet';
         $drug->type_id = 4;
         $drug->price = 15000;
+        $drug->stock = 9000;
         $drug->created_at = now();
         $drug->updated_at = now();
         $drug->save();
@@ -53,6 +57,7 @@ class DrugSeeder extends Seeder
         $drug->description = 'Lorem ipsum dolor sit amet';
         $drug->type_id = 5;
         $drug->price = 15000;
+        $drug->stock = 9000;
         $drug->created_at = now();
         $drug->updated_at = now();
         $drug->save();

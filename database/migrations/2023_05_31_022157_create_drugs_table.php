@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->foreignId('type_id')->constrained('types');
             $table->bigInteger('price');
+            $table->bigInteger('stock');
             $table->timestamps();
         });
     }

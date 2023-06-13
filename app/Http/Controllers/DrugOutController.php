@@ -64,10 +64,10 @@ class DrugOutController extends Controller
             $total_price = $request->amount * $getPrice[0]->price;
 
             $drugOut = new DrugOut();
-            $drugOut->drug_id -> $request->drug_id;
-            $drugOut->date_out -> $request->date_out;
-            $drugOut->amount -> $request->amount;
-            $drugOut->total_price -> $total_price;
+            $drugOut->drug_id = $request->drug_id;
+            $drugOut->date_out = $request->date_out;
+            $drugOut->amount = $request->amount;
+            $drugOut->total_price = $total_price;
             $drugOut->save();
 
 
@@ -119,10 +119,10 @@ class DrugOutController extends Controller
             $total_price = $request->amount * $getPrice[0]->price;
 
             $drugOut = DrugOut::find($id);
-            $drugOut->drug_id -> $request->drug_id;
-            $drugOut->date_out -> $request->date_out;
-            $drugOut->amount -> $request->amount;
-            $drugOut->total_price -> $total_price;
+            $drugOut->drug_id = $request->drug_id;
+            $drugOut->date_out = $request->date_out;
+            $drugOut->amount = $request->amount;
+            $drugOut->total_price = $total_price;
             $drugOut->save();
             return redirect('/back-staff/drugOut')->withStatus('Berhasil memperbarui data.');
         } catch(\Throwable $e){

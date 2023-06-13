@@ -5,14 +5,6 @@
     <!-- Card header -->
     <div class="card-header">
       <h3 class="mb-0">Tambah Pengeluaran Obat</h3>
-      @if (session('status'))
-            
-        <p>{{ session('status') }}</p>
-        @endif
-        @if (session('error'))
-            
-        <p>{{ session('error') }}</p>
-        @endif
     </div>
     <!-- Card body -->
     <div class="card-body">
