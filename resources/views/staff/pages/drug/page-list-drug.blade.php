@@ -31,13 +31,13 @@
                 <td>{{ $item->price }}</td>
                 <td>
                     <div class="row">
-                        <form method="POST" class="inline mr-2" action="{{ url('drug/edit',$item->id) }}">
+                        <form method="POST" class="inline mr-2" action="{{ url('back-staff/drug/edit',$item->id) }}">
                             @csrf
                             <button class="btn btn-icon btn-primary" type="submit">
                                 <span class="btn-inner--icon"><i class="fa fa-pen"></i></span>
                             </button>
                         </form>
-                        <form method="POST" class="inline" action="{{ url('drug/destroy',$item->id) }}">
+                        <form method="POST" class="inline" action="{{ url('back-staff/drug/destroy',$item->id) }}">
                             @method('delete')
                             @csrf
                             <button class="btn btn-icon btn-danger" type="submit" onclick="return confirm('Hapus Data ?')">

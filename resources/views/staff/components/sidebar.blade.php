@@ -2,7 +2,7 @@
 <div class="scrollbar-inner">
     <!-- Brand -->
     <div class="sidenav-header d-flex align-items-center">
-    <a class="navbar-brand" href="{{ url('/dashboard') }}">
+    <a class="navbar-brand" href="{{ url('/back-staff/dashboard') }}">
         <h1 class="text-sm align-middle">Dashboard Admin</h1>
     </a>
     <div class="ml-auto">
@@ -22,7 +22,7 @@
         <!-- Nav items -->
         <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link @if (Request::segment(1) == 'dashboard') active @endif" href="{{ url('/dashboard') }}"  >
+            <a class="nav-link @if (Request::segment(1) == 'dashboard') active @endif" href="{{ url('/back-staff/dashboard') }}"  >
             <i class="ni ni-shop text-primary"></i>
             <span class="nav-link-text">Dashboards</span>
             </a>
@@ -35,10 +35,10 @@
             <div class="collapse" id="navbar-examples">
             <ul class="nav nav-sm flex-column">
                 <li class="nav-item ">
-                <a href="{{ url('/type') }}" class="nav-link ">List Jenis Obat</a>
+                <a href="{{ url('/back-staff/type') }}" class="nav-link ">List Jenis Obat</a>
                 </li>
                 <li class="nav-item">
-                <a href="{{ url('/type/create') }}" class="nav-link">Tambah Jenis Obat</a>
+                <a href="{{ url('/back-staff/type/create') }}" class="nav-link">Tambah Jenis Obat</a>
                 </li>
             </ul>
             </div>
@@ -51,10 +51,10 @@
             <div class="collapse" id="navbar-components">
             <ul class="nav nav-sm flex-column">
                 <li class="nav-item">
-                <a href="{{ url('/drug') }}" class="nav-link">List Obat</a>
+                <a href="{{ url('/back-staff/drug') }}" class="nav-link">List Obat</a>
                 </li>
                 <li class="nav-item">
-                <a href="{{ url('/drug/create') }}" class="nav-link">Tambah Obat</a>
+                <a href="{{ url('/back-staff/drug/create') }}" class="nav-link">Tambah Obat</a>
                 </li>
                 <li class="nav-item">
                 </li>
@@ -69,10 +69,10 @@
             <div class="collapse" id="navbar-forms">
             <ul class="nav nav-sm flex-column">
                 <li class="nav-item">
-                <a href="{{ url('/drugIn') }}" class="nav-link">List Pemasukan Obat</a>
+                <a href="{{ url('/back-staff/drugIn') }}" class="nav-link">List Pemasukan Obat</a>
                 </li>
                 <li class="nav-item">
-                <a href="{{ url('/drugIn/create') }}" class="nav-link">Tambah Pemasukan Obat</a>
+                <a href="{{ url('/back-staff/drugIn/create') }}" class="nav-link">Tambah Pemasukan Obat</a>
                 </li>
             </ul>
             </div>
@@ -85,10 +85,10 @@
             <div class="collapse" id="navbar-tables">
             <ul class="nav nav-sm flex-column">
                 <li class="nav-item">
-                <a href="{{ url('/drugOut') }}" class="nav-link">List Pengeluaran Obat</a>
+                <a href="{{ url('/back-staff/drugOut') }}" class="nav-link">List Pengeluaran Obat</a>
                 </li>
                 <li class="nav-item">
-                <a href="{{ url('/drugOut/create') }}" class="nav-link">Tambah Pengeluaran Obat</a>
+                <a href="{{ url('/back-staff/drugOut/create') }}" class="nav-link">Tambah Pengeluaran Obat</a>
                 </li>
             </ul>
             </div>

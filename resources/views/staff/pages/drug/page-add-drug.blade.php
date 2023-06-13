@@ -9,7 +9,7 @@
     <!-- Card body -->
     <div class="card-body">
       <!-- Form groups used in grid -->
-      <form method="POST" action="{{ url('drug/new') }}" >
+      <form method="POST" action="{{ url('back-staff/drug/new') }}" >
         @csrf
         <div class="row">
           <div class="col-md-6">

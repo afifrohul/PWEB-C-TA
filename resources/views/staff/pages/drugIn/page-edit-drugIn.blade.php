@@ -9,7 +9,7 @@
     <!-- Card body -->
     <div class="card-body">
       <!-- Form groups used in grid -->
-      <form method="POST" action="{{ url('drugIn/update',$getDetailDrugIn->id) }}" >
+      <form method="POST" action="{{ url('back-staff/drugIn/update',$getDetailDrugIn->id) }}" >
         @method('PUT')
         @csrf
         <div class="row">
