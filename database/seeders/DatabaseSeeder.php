@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             DrugSeeder::class,
             DrugInSeeder::class,
             DrugOutSeeder::class,
+            DiagnosisSeeder::class,
         ]);
     }
 }

@@ -3,7 +3,7 @@
     <!-- Brand -->
     <div class="sidenav-header d-flex align-items-center">
     <a class="navbar-brand" href="{{ url('/back-staff/dashboard') }}">
-        <h1 class="text-sm align-middle">Dashboard Admin</h1>
+        <h2 class="text-sm align-middle">Dashboard Admin</h2>
     </a>
     <div class="ml-auto">
         <!-- Sidenav toggler -->
@@ -22,13 +22,29 @@
         <!-- Nav items -->
         <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link @if (Request::segment(1) == 'dashboard') active @endif" href="{{ url('/back-staff/dashboard') }}"  >
+            <a class="nav-link @if (Request::segment(2) == 'dashboard') active @endif" href="{{ url('/back-staff/dashboard') }}"  >
             <i class="ni ni-shop text-primary"></i>
             <span class="nav-link-text">Dashboards</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link @if (Request::segment(1) == 'type') active @endif" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
+            <a class="nav-link @if (Request::segment(2) == 'patient') active @endif" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
+            <i class="ni ni-circle-08 text-success"></i>
+            <span class="nav-link-text">Pasien</span>
+            </a>
+            <div class="collapse" id="navbar-examples">
+            <ul class="nav nav-sm flex-column">
+                <li class="nav-item ">
+                <a href="{{ url('/back-doctor/patient') }}" class="nav-link ">List Pasien</a>
+                </li>
+                <li class="nav-item">
+                <a href="{{ url('/back-doctor/patient/create') }}" class="nav-link">Tambah Pasien</a>
+                </li>
+            </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @if (Request::segment(2) == 'type') active @endif" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
             <i class="ni ni-ungroup text-orange"></i>
             <span class="nav-link-text">Jenis Obat</span>
             </a>
@@ -44,7 +60,7 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link @if (Request::segment(1) == 'drug') active @endif" href="#navbar-components" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
+            <a class="nav-link @if (Request::segment(2) == 'drug') active @endif" href="#navbar-components" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
             <i class="ni ni-ui-04 text-info"></i>
             <span class="nav-link-text">Obat</span>
             </a>
@@ -62,7 +78,7 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link @if (Request::segment(1) == 'drugIn') active @endif" href="#navbar-forms" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-forms">
+            <a class="nav-link @if (Request::segment(2) == 'drugIn') active @endif" href="#navbar-forms" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-forms">
             <i class="ni ni-single-copy-04 text-pink"></i>
             <span class="nav-link-text">Pemasukan Obat</span>
             </a>
@@ -78,7 +94,7 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link @if (Request::segment(1) == 'drugOut') active @endif" href="#navbar-tables" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-tables">
+            <a class="nav-link @if (Request::segment(2) == 'drugOut') active @endif" href="#navbar-tables" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-tables">
             <i class="ni ni-align-left-2 text-default"></i>
             <span class="nav-link-text">Pengerluaran Obat</span>
             </a>

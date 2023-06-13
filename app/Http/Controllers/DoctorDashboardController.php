@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class StaffDashboardController extends Controller
+class DoctorDashboardController extends Controller
 {
     private $param;
     public function index(){
@@ -28,7 +28,7 @@ class StaffDashboardController extends Controller
             $this->param['getDrugOutNov'] = DB::table('drug_outs')->whereMonth('date_out', '11')->sum('total_price');
             $this->param['getDrugOutDes'] = DB::table('drug_outs')->whereMonth('date_out', '12')->sum('total_price');
 
-            return view('staff.pages.dashboard.dashboard', $this->param);
+            return view('doctor.pages.dashboard.dashboard', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {

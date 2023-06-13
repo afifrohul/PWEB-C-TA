@@ -7,8 +7,9 @@ use App\Http\Controllers\DrugInController;
 use App\Http\Controllers\DrugOutController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DrugTypeController;
+use App\Http\Controllers\InspectionController;
 use App\Http\Controllers\StaffDashboardController;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\DoctorDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,16 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/back-dashboard', [HomeController::class, 'index'])->name('back-dashboard');
 
+
+Route::group(['middleware' => ['role:doctor']], function () {
+
+    Route::get('/back-doctor/dashboard', [DoctorDashboardController::class, 'index']);
+
+    Route::get('/back-doctor/inspection', [InspectionController::class, 'index']);
+    Route::get('/back-doctor/inspection/create', [InspectionController::class, 'create']);
+    Route::post('/back-doctor/inspection/new', [InspectionController::class, 'store']);
+
+});
 
 Route::group(['middleware' => ['role:staff']], function () {
 

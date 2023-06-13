@@ -59,10 +59,34 @@ class UserSeeder extends Seeder
         $staff->assignRole('staff');
         
         $patient = new \App\Models\User();
-        $patient->name = 'patient';
-        $patient->email = 'patient@gmail.com';
+        $patient->name = 'Budi';
+        $patient->email = 'budi@gmail.com';
         $patient->email_verified_at = now();
-        $patient->password = \Hash::make('patient01');
+        $patient->password = \Hash::make('budi01');
+        $patient->remember_token = \Str::random(60);
+        $patient->created_at = now();
+        $patient->updated_at = now();
+        $patient->save();
+        event(new Registered($patient));
+        $patient->assignRole('patient');
+        
+        $patient = new \App\Models\User();
+        $patient->name = 'Helmi';
+        $patient->email = 'helmi@gmail.com';
+        $patient->email_verified_at = now();
+        $patient->password = \Hash::make('helmi01');
+        $patient->remember_token = \Str::random(60);
+        $patient->created_at = now();
+        $patient->updated_at = now();
+        $patient->save();
+        event(new Registered($patient));
+        $patient->assignRole('patient');
+
+        $patient = new \App\Models\User();
+        $patient->name = 'Hilal';
+        $patient->email = 'hilal@gmail.com';
+        $patient->email_verified_at = now();
+        $patient->password = \Hash::make('hilal01');
         $patient->remember_token = \Str::random(60);
         $patient->created_at = now();
         $patient->updated_at = now();
