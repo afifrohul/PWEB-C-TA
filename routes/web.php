@@ -25,23 +25,14 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-
-Route::middleware('guest')->group(function () {
-    Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
-
-    Route::post('login', [AuthenticatedSessionController::class, 'store']);
-});
-
 Route::middleware('auth')->group(function () {
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-
-    Route::get('/back-dashboard', [HomeController::class, 'index'])->name('back-dashboard');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+Route::get('/back-dashboard', [HomeController::class, 'index'])->name('back-dashboard');
 
 
 Route::group(['middleware' => ['role:staff']], function () {
@@ -77,3 +68,5 @@ Route::group(['middleware' => ['role:staff']], function () {
     Route::delete('/back-staff/drugOut/destroy/{id}', [DrugOutController::class, 'destroy']);
 
 });
+
+require __DIR__.'/auth.php';
