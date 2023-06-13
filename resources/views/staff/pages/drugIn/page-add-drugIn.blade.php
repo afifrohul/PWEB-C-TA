@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('staff.layouts.app')
 @section('content')
 <div class="container-fluid mt--6">
   <div class="card mb-4">

@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('staff.layouts.app')
 @section('content')
 
 <div class="row">

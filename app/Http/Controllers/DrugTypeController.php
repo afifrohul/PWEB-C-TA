@@ -16,7 +16,7 @@ class DrugTypeController extends Controller
         try {
             $this->param['getAllDrugType'] = Type::all();
 
-            return view('backend.pages.type.page-list-type', $this->param);
+            return view('staff.pages.type.page-list-type', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -30,7 +30,7 @@ class DrugTypeController extends Controller
     public function create()
     {
         try {
-            return view('backend.pages.type.page-add-type');
+            return view('staff.pages.type.page-add-type');
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -58,7 +58,7 @@ class DrugTypeController extends Controller
             $type->name = $request->name;
             $type->save();
 
-            return redirect('/type')->withStatus('Berhasil menambah data.');
+            return redirect('/back-staff/type')->withStatus('Berhasil menambah data.');
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -74,7 +74,7 @@ class DrugTypeController extends Controller
 
         $this->param['getDetailType'] = Type::find($id);
         try {
-            return view('backend.pages.type.page-edit-type', $this->param);
+            return view('staff.pages.type.page-edit-type', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -102,11 +102,11 @@ class DrugTypeController extends Controller
             $type = Type::find($id);
             $type->name = $request->name;
             $type->save();
-            return redirect('/type')->withStatus('Berhasil memperbarui data.');
+            return redirect('/back-staff/type')->withStatus('Berhasil memperbarui data.');
         } catch(\Throwable $e){
-            return redirect('/type')->withError($e->getMessage());
+            return redirect('/back-staff/type')->withError($e->getMessage());
         } catch(\Illuminate\Database\QueryException $e){
-            return redirect('/type')->withError($e->getMessage());
+            return redirect('/back-staff/type')->withError($e->getMessage());
         }
     }
 
@@ -117,11 +117,11 @@ class DrugTypeController extends Controller
     {
         try {
             Type::find($id)->delete();
-            return redirect('/type')->withStatus('Berhasil menghapus data.');
+            return redirect('/back-staff/type')->withStatus('Berhasil menghapus data.');
         } catch(\Throwable $e){
-            return redirect('/type')->withError($e->getMessage());
+            return redirect('/back-staff/type')->withError($e->getMessage());
         } catch(\Illuminate\Database\QueryException $e){
-            return redirect('/type')->withError($e->getMessage());
+            return redirect('/back-staff/type')->withError($e->getMessage());
         }
     }
 }

@@ -1,24 +1,24 @@
-@extends('backend.layouts.app')
+@extends('staff.layouts.app')
 @section('content')
 <div class="container-fluid mt--6">
   <div class="card mb-4">
     <!-- Card header -->
     <div class="card-header">
-      <h3 class="mb-0">Edit Pengeluaran Obat</h3>
+      <h3 class="mb-0">Edit Pemasukan Obat</h3>
     </div>
     <!-- Card body -->
     <div class="card-body">
       <!-- Form groups used in grid -->
-      <form method="POST" action="{{ url('drugOut/update',$getDetailDrugOut->id) }}" >
+      <form method="POST" action="{{ url('drugIn/update',$getDetailDrugIn->id) }}" >
         @method('PUT')
         @csrf
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
               <label class="form-control-label" for="example2cols1Input">Nama Obat</label>
-              <select class="form-control" name="drug_id" id="drug" data-toggle="select">
+              <select class="form-control" name="drug_id" data-toggle="select">
                 @foreach ($getAllDrug as $item)
-                <option value="{{ $item->id }}" @if ($getDetailDrugOut->drug_id == $item->id ) selected @endif >{{ $item->name }} | Rp {{ $item->price }}</option>
+                <option value="{{ $item->id }}" @if ($getDetailDrugIn->drug_id == $item->id ) selected @endif >{{ $item->name }}</option>
                 @endforeach
               </select>
               @error('drug_id')
@@ -32,8 +32,8 @@
         <div class="row">
             <div class="col-md-6">
             <div class="form-group">
-              <label class="form-control-label" for="exampleFormControlTextarea1">Tanggal Keluar (mm-dd-yyyy)</label>
-              <input class="form-control" type="date" name="date_out" value="{{ $getDetailDrugOut->date_out }}" id="example-date-input">
+              <label class="form-control-label" for="exampleFormControlTextarea1">Tanggal Masuk (mm-dd-yyyy)</label>
+              <input class="form-control" type="date" name="date_in" value="{{ $getDetailDrugIn->date_in }}" id="example-date-input">
             </div>
           </div>
         </div>
@@ -41,7 +41,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label class="form-control-label" for="exampleFormControlTextarea1">Kuantitas</label>
-              <input type="number" id="amount" name="amount" class="form-control  @error('name') is-invalid @enderror" id="example2cols1Input" placeholder="Paracetamol" value="{{ $getDetailDrugOut->amount }}">
+              <input type="text" name="amount" class="form-control  @error('name') is-invalid @enderror" id="example2cols1Input" placeholder="Paracetamol" value="{{ $getDetailDrugIn->amount }}">
               @error('amounrt')
               <span class="text-danger font-weight-bold text-sm">
                 {{ $message }}
@@ -49,10 +49,6 @@
               @enderror
             </div>
           </div>
-        </div>
-        <div class="flex mb-3">
-            <span class="text-lg">Total: Rp </span>
-            <span class="text-lg" id="total"> </span>
         </div>
         <button class="btn btn-icon btn-primary" type="submit">
           <span class="btn-inner--icon"><i class="fa fa-save"></i></span>
@@ -62,27 +58,4 @@
     </div>
   </div>
 </div>
-@endsection
-@section('extraJS')
-<script>
-  var drugSelect = document.getElementById("drug");
-  var amountInput = document.getElementById("amount");
-  var totalHarga = document.getElementById("total");
-
-  drugSelect.addEventListener("change", hitungTotal);
-
-  amountInput.addEventListener("input", hitungTotal);
-
-  function hitungTotal() {
-    var text = drug.options[drug.selectedIndex].innerHTML.split(' ');
-    var amount = amountInput.value;
-
-    var harga = parseInt( text[text.length - 1]);
-
-    var total = harga * amount;
-
-    totalHarga.innerHTML = total;
-  }
-
-</script>
 @endsection

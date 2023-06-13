@@ -18,7 +18,7 @@ class DrugOutController extends Controller
         try {
             $this->param['getAllDrugOut'] = DrugOut::all();
 
-            return view('backend.pages.drugOut.page-list-drugOut', $this->param);
+            return view('staff.pages.drugOut.page-list-drugOut', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -33,7 +33,7 @@ class DrugOutController extends Controller
     {
         $this->param['getAllDrug'] = Drug::all();
         try {
-            return view('backend.pages.drugOut.page-add-drugOut', $this->param);
+            return view('staff.pages.drugOut.page-add-drugOut', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -72,7 +72,7 @@ class DrugOutController extends Controller
 
 
 
-            return redirect('/drugOut')->withStatus('Berhasil menambah data.');
+            return redirect('/back-staff/drugOut')->withStatus('Berhasil menambah data.');
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -89,7 +89,7 @@ class DrugOutController extends Controller
         $this->param['getAllDrug'] = Drug::all();
         $this->param['getDetailDrugOut'] = DrugOut::find($id);
         try {
-            return view('backend.pages.drugOut.page-edit-drugOut', $this->param);
+            return view('staff.pages.drugOut.page-edit-drugOut', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -124,11 +124,11 @@ class DrugOutController extends Controller
             $drugOut->amount -> $request->amount;
             $drugOut->total_price -> $total_price;
             $drugOut->save();
-            return redirect('/drugOut')->withStatus('Berhasil memperbarui data.');
+            return redirect('/back-staff/drugOut')->withStatus('Berhasil memperbarui data.');
         } catch(\Throwable $e){
-            return redirect('/drugOut')->withError($e->getMessage());
+            return redirect('/back-staff/drugOut')->withError($e->getMessage());
         } catch(\Illuminate\Database\QueryException $e){
-            return redirect('/drugOut')->withError($e->getMessage());
+            return redirect('/back-staff/drugOut')->withError($e->getMessage());
         }
     }
 
@@ -139,11 +139,11 @@ class DrugOutController extends Controller
     {
         try {
             DrugOut::find($id)->delete();
-            return redirect('/drugOut')->withStatus('Berhasil menghapus data.');
+            return redirect('/back-staff/drugOut')->withStatus('Berhasil menghapus data.');
         } catch(\Throwable $e){
-            return redirect('/drugOut')->withError($e->getMessage());
+            return redirect('/back-staff/drugOut')->withError($e->getMessage());
         } catch(\Illuminate\Database\QueryException $e){
-            return redirect('/drugOut')->withError($e->getMessage());
+            return redirect('/back-staff/drugOut')->withError($e->getMessage());
         }
     }
 }

@@ -18,7 +18,7 @@ class DrugController extends Controller
         try {
             $this->param['getAllDrug'] = Drug::all();
 
-            return view('backend.pages.drug.page-list-drug', $this->param);
+            return view('staff.pages.drug.page-list-drug', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -33,7 +33,7 @@ class DrugController extends Controller
     {
         $this->param['getAllType'] = Type::all();
         try {
-            return view('backend.pages.drug.page-add-drug', $this->param);
+            return view('staff.pages.drug.page-add-drug', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -68,7 +68,7 @@ class DrugController extends Controller
             $drug->price = $request->price;
             $drug->save();
 
-            return redirect('/drug')->withStatus('Berhasil menambah data.');
+            return redirect('/back-staff/drug')->withStatus('Berhasil menambah data.');
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -93,7 +93,7 @@ class DrugController extends Controller
         $this->param['getDetailDrug'] = Drug::find($id);
         
         try {
-            return view('backend.pages.drug.page-edit-drug', $this->param);
+            return view('staff.pages.drug.page-edit-drug', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -127,11 +127,11 @@ class DrugController extends Controller
             $drug->type_id = $request->type_id;
             $drug->price = $request->price;
             $drug->save();
-            return redirect('/drug')->withStatus('Berhasil memperbarui data.');
+            return redirect('/back-staff/drug')->withStatus('Berhasil memperbarui data.');
         } catch(\Throwable $e){
-            return redirect('/drug')->withError($e->getMessage());
+            return redirect('/back-staff/drug')->withError($e->getMessage());
         } catch(\Illuminate\Database\QueryException $e){
-            return redirect('/drug')->withError($e->getMessage());
+            return redirect('/back-staff/drug')->withError($e->getMessage());
         }
     }
 
@@ -142,11 +142,11 @@ class DrugController extends Controller
     {
         try {
             Drug::find($id)->delete();
-            return redirect('/drug')->withStatus('Berhasil menghapus data.');
+            return redirect('/back-staff/drug')->withStatus('Berhasil menghapus data.');
         } catch(\Throwable $e){
-            return redirect('/drug')->withError($e->getMessage());
+            return redirect('/back-staff/drug')->withError($e->getMessage());
         } catch(\Illuminate\Database\QueryException $e){
-            return redirect('/drug')->withError($e->getMessage());
+            return redirect('/back-staff/drug')->withError($e->getMessage());
         }
     }
 }

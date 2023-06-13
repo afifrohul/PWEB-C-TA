@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('staff.layouts.app')
 @section('content')
 
 <div class="row">
@@ -14,30 +14,28 @@
             <tr>
                 <th>No</th>
                 <th>Nama Obat</th>
-                <th>Tanggal Keluar</th>
+                <th>Tanggal Masuk</th>
                 <th>Kuantitas</th>
-                <th>Total Harga</th>
                 <th>Opsi</th>
             </tr>
             </thead>
             <tbody>
-            @foreach ($getAllDrugOut as $item)
+            @foreach ($getAllDrugIn as $item)
                 
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $item->drug->name }}</td>
-                <td>{{ $item->date_out }}</td>
+                <td>{{ $item->date_in }}</td>
                 <td>{{ $item->amount }}</td>
-                <td>{{ $item->total_price }}</td>
                 <td>
                     <div class="row">
-                        <form method="POST" class="inline mr-2" action="{{ url('drugOut/edit',$item->id) }}">
+                        <form method="POST" class="inline mr-2" action="{{ url('drugIn/edit',$item->id) }}">
                             @csrf
                             <button class="btn btn-icon btn-primary" type="submit">
                                 <span class="btn-inner--icon"><i class="fa fa-pen"></i></span>
                             </button>
                         </form>
-                        <form method="POST" class="inline" action="{{ url('drugOut/destroy',$item->id) }}">
+                        <form method="POST" class="inline" action="{{ url('drugIn/destroy',$item->id) }}">
                             @method('delete')
                             @csrf
                             <button class="btn btn-icon btn-danger" type="submit" onclick="return confirm('Hapus Data ?')">

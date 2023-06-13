@@ -24,11 +24,11 @@
 
 <body>
   <!-- Sidebar -->
-  @include('backend.components.sidebar')
+  @include('staff.components.sidebar')
   <!-- Main content -->
   <div class="main-content" id="panel">
     <!-- navbar -->
-    @include('backend.components.navbar')
+    @include('staff.components.navbar')
     <div class="header bg-primary pb-6">
       @if (session('status'))
       <div class="alert alert-success alert-dismissible fade show mx-4" role="alert">

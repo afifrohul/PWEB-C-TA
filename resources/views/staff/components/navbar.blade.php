@@ -33,7 +33,7 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="https://afifrohul.netlify.app/images/profile.png">
+                <img alt="Image placeholder" src="{{ asset('assets/img/1.png') }}">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                 <span class="mb-0 text-sm  font-weight-bold">Hi, {{ \Auth::user()->name }}</span>

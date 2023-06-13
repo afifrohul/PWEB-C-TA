@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('staff.layouts.app')
 @section('card')
 <div class="row align-items-center py-4">
     <div class="col-lg-6 col-7">
@@ -6,7 +6,7 @@
         <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
             <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
-            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Dashboards</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/back-staff/dashboard') }}">Dashboards</a></li>
         </ol>
         </nav>
     </div>
@@ -17,7 +17,7 @@
     <!-- Card body -->
     <div class="card-body">
         <div class="row">
-        <div class="col">
+        <div class="col"> 
             <h5 class="card-title text-uppercase text-muted mb-0">Total Jenis Obat</h5>
             <span class="h2 font-weight-bold mb-0">{{ $getCountDrugType }}</span>
         </div>
