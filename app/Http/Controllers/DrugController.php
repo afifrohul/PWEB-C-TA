@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Drug;
+use App\Models\Type;
 
 class DrugController extends Controller
 {
@@ -14,7 +16,7 @@ class DrugController extends Controller
     public function index()
     {
         try {
-            $this->param['getAllDrug'] = DB::select('select drugs.*, types.name AS type_name FROM drugs JOIN types ON drugs.type_id = types.id');
+            $this->param['getAllDrug'] = Drug::all();
 
             return view('backend.pages.drug.page-list-drug', $this->param);
         } catch (\Exception $e) {
@@ -29,7 +31,7 @@ class DrugController extends Controller
      */
     public function create()
     {
-        $this->param['getAllType'] = DB::select('select * from types');
+        $this->param['getAllType'] = Type::all();
         try {
             return view('backend.pages.drug.page-add-drug', $this->param);
         } catch (\Exception $e) {
@@ -59,7 +61,13 @@ class DrugController extends Controller
             'price' => 'Harga Obat',
         ]);
         try {
-            DB::insert('INSERT INTO drugs (name, description, type_id, price) VALUES (?,?,?,?)', [$request->name, $request->description, $request->type_id, $request->price]);
+            $drug = new Drug();
+            $drug->name = $request->name;
+            $drug->description = $request->description;
+            $drug->type_id = $request->type_id;
+            $drug->price = $request->price;
+            $drug->save();
+
             return redirect('/drug')->withStatus('Berhasil menambah data.');
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
@@ -81,8 +89,8 @@ class DrugController extends Controller
      */
     public function edit(string $id)
     {
-        $this->param['getAllType'] = DB::select('select * from types');
-        $this->param['getDetailDrug'] = DB::select('select * from drugs where id = ?', [$id]);
+        $this->param['getAllType'] = Type::all();
+        $this->param['getDetailDrug'] = Drug::find($id);
         
         try {
             return view('backend.pages.drug.page-edit-drug', $this->param);
@@ -113,7 +121,12 @@ class DrugController extends Controller
             'price' => 'Harga Obat',
         ]);
         try {
-            DB::update('UPDATE drugs SET name = ?, description = ?, type_id = ?, price =? WHERE id = ?', [$request->name,$request->description,$request->type_id,$request->price,$id,]);
+            $drug = Drug::find($id);
+            $drug->name = $request->name;
+            $drug->description = $request->description;
+            $drug->type_id = $request->type_id;
+            $drug->price = $request->price;
+            $drug->save();
             return redirect('/drug')->withStatus('Berhasil memperbarui data.');
         } catch(\Throwable $e){
             return redirect('/drug')->withError($e->getMessage());
@@ -128,7 +141,7 @@ class DrugController extends Controller
     public function destroy(string $id)
     {
         try {
-            DB::delete('DELETE FROM drugs WHERE id = ?', [$id]);
+            Drug::find($id)->delete();
             return redirect('/drug')->withStatus('Berhasil menghapus data.');
         } catch(\Throwable $e){
             return redirect('/drug')->withError($e->getMessage());

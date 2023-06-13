@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Type;
 
 class DrugTypeController extends Controller
 {
@@ -13,8 +14,7 @@ class DrugTypeController extends Controller
     public function index()
     {
         try {
-            // $this->param['getAllDrugType'] = DB::select('select * from types');
-            $this->param['getAllDrugType'] = DB::table('types')->get();
+            $this->param['getAllDrugType'] = Type::all();
 
             return view('backend.pages.type.page-list-type', $this->param);
         } catch (\Exception $e) {
@@ -54,8 +54,10 @@ class DrugTypeController extends Controller
             'name' => 'Nama Jenis Obat',
         ]);
         try {
-            // DB::insert('INSERT INTO types (name) VALUES (?)', [$request->name]);
-            DB::table('types')->insert(['name' => $request->name]);
+            $type = new Type();
+            $type->name = $request->name;
+            $type->save();
+
             return redirect('/type')->withStatus('Berhasil menambah data.');
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
@@ -70,8 +72,7 @@ class DrugTypeController extends Controller
     public function edit(string $id)
     {
 
-        // $this->param['getDetailType'] = DB::select('select * from types where id = ?', [$id]);
-        $this->param['getDetailType'] = DB::table('types')->where('id', $id)->get();
+        $this->param['getDetailType'] = Type::find($id);
         try {
             return view('backend.pages.type.page-edit-type', $this->param);
         } catch (\Exception $e) {
@@ -98,8 +99,9 @@ class DrugTypeController extends Controller
         ]);
 
         try {
-            // DB::update('UPDATE types SET name = ? WHERE id = ?', [$request->name,$id,]);
-            DB::table('types')->where('id', $id)->update(['name' => $request->name]);
+            $type = Type::find($id);
+            $type->name = $request->name;
+            $type->save();
             return redirect('/type')->withStatus('Berhasil memperbarui data.');
         } catch(\Throwable $e){
             return redirect('/type')->withError($e->getMessage());
@@ -114,8 +116,7 @@ class DrugTypeController extends Controller
     public function destroy(string $id)
     {
         try {
-            // DB::delete('DELETE FROM types WHERE id = ?', [$id]);
-            DB::table('types')->where('id', $id)->delete();
+            Type::find($id)->delete();
             return redirect('/type')->withStatus('Berhasil menghapus data.');
         } catch(\Throwable $e){
             return redirect('/type')->withError($e->getMessage());

@@ -10,4 +10,9 @@ class Type extends Model
     use HasFactory;
     protected $table = 'types';
     protected $primaryKey = 'id';
+
+    public function drug()
+    {
+        return $this->hasMany(Drug::class);
+    }
 }

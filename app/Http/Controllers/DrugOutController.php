@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Models\Drug;
+use App\Models\DrugOut;
 
 class DrugOutController extends Controller
 {
@@ -14,7 +16,7 @@ class DrugOutController extends Controller
     public function index()
     {
         try {
-            $this->param['getAllDrugOut'] = DB::select('select drug_outs.*, drugs.name AS drug_name FROM drug_outs JOIN drugs ON drug_outs.drug_id = drugs.id');
+            $this->param['getAllDrugOut'] = DrugOut::all();
 
             return view('backend.pages.drugOut.page-list-drugOut', $this->param);
         } catch (\Exception $e) {
@@ -29,7 +31,7 @@ class DrugOutController extends Controller
      */
     public function create()
     {
-        $this->param['getAllDrug'] = DB::select('select * from drugs');
+        $this->param['getAllDrug'] = Drug::all();
         try {
             return view('backend.pages.drugOut.page-add-drugOut', $this->param);
         } catch (\Exception $e) {
@@ -60,7 +62,16 @@ class DrugOutController extends Controller
         try {
             $getPrice = DB::select('select price from drugs where id = ?', [$request->drug_id]);
             $total_price = $request->amount * $getPrice[0]->price;
-            DB::insert('INSERT INTO drug_outs (drug_id, date_out, amount, total_price,created_at, updated_at) VALUES (?,?,?,?,?,?)', [$request->drug_id, $request->date_out, $request->amount, $total_price ,$datetime, $datetime]);
+
+            $drugOut = new DrugOut();
+            $drugOut->drug_id -> $request->drug_id;
+            $drugOut->date_out -> $request->date_out;
+            $drugOut->amount -> $request->amount;
+            $drugOut->total_price -> $total_price;
+            $drugOut->save();
+
+
+
             return redirect('/drugOut')->withStatus('Berhasil menambah data.');
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
@@ -75,9 +86,8 @@ class DrugOutController extends Controller
      */
     public function edit(string $id)
     {
-        $this->param['getAllDrug'] = DB::select('select * from drugs');
-        $this->param['getDetailDrugOut'] = DB::select('select * from drug_outs where id = ?', [$id]);
-        $this->param['getDetailDrugPrice'] = DB::select('select * from drugs where id = ?', [$id]);
+        $this->param['getAllDrug'] = Drug::all();
+        $this->param['getDetailDrugOut'] = DrugOut::find($id);
         try {
             return view('backend.pages.drugOut.page-edit-drugOut', $this->param);
         } catch (\Exception $e) {
@@ -107,7 +117,13 @@ class DrugOutController extends Controller
         try {
             $getPrice = DB::select('select price from drugs where id = ?', [$request->drug_id]);
             $total_price = $request->amount * $getPrice[0]->price;
-            DB::update('UPDATE drug_outs SET drug_id = ?, date_out = ?, amount = ?, total_price = ?,updated_at =? WHERE id = ?', [$request->drug_id,$request->date_out,$request->amount, $total_price , $datetime,$id,]);
+
+            $drugOut = DrugOut::find($id);
+            $drugOut->drug_id -> $request->drug_id;
+            $drugOut->date_out -> $request->date_out;
+            $drugOut->amount -> $request->amount;
+            $drugOut->total_price -> $total_price;
+            $drugOut->save();
             return redirect('/drugOut')->withStatus('Berhasil memperbarui data.');
         } catch(\Throwable $e){
             return redirect('/drugOut')->withError($e->getMessage());
@@ -122,7 +138,7 @@ class DrugOutController extends Controller
     public function destroy(string $id)
     {
         try {
-            DB::delete('DELETE FROM drug_outs WHERE id = ?', [$id]);
+            DrugOut::find($id)->delete();
             return redirect('/drugOut')->withStatus('Berhasil menghapus data.');
         } catch(\Throwable $e){
             return redirect('/drugOut')->withError($e->getMessage());

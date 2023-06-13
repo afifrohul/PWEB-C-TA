@@ -27,7 +27,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->description }}</td>
-                <td>{{ $item->type_name }}</td>
+                <td>{{ $item->type->name }}</td>
                 <td>{{ $item->price }}</td>
                 <td>
                     <div class="row">

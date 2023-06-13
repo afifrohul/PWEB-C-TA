@@ -25,7 +25,7 @@
                 
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $item->drug_name }}</td>
+                <td>{{ $item->drug->name }}</td>
                 <td>{{ $item->date_out }}</td>
                 <td>{{ $item->amount }}</td>
                 <td>{{ $item->total_price }}</td>

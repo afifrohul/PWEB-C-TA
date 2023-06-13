@@ -10,4 +10,9 @@ class DrugOut extends Model
     use HasFactory;
     protected $table = 'drug_outs';
     protected $primaryKey = 'id';
+
+    public function drug()
+    {
+        return $this->belongsTo(Drug::class);
+    }
 }

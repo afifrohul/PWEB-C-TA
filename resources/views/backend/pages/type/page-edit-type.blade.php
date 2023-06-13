@@ -10,14 +10,14 @@
     <!-- Card body -->
     <div class="card-body">
       <!-- Form groups used in grid -->
-      <form method="POST" action="{{ url('type/update',$getDetailType[0]->id) }}" >
+      <form method="POST" action="{{ url('type/update',$getDetailType->id) }}" >
         @method('PUT')
         @csrf
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
               <label class="form-control-label" for="example2cols1Input">Nama Jenis Obat</label>
-              <input type="text" name="name" class="form-control text-black  @error('name') is-invalid @enderror" id="example2cols1Input" placeholder="Pil" value="{{ $getDetailType[0]->name }}">
+              <input type="text" name="name" class="form-control text-black  @error('name') is-invalid @enderror" id="example2cols1Input" placeholder="Pil" value="{{ $getDetailType->name }}">
               @error('name')
               <span class="text-danger font-weight-bold text-sm">
                 {{ $message }}

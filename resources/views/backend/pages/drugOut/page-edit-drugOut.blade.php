@@ -9,7 +9,7 @@
     <!-- Card body -->
     <div class="card-body">
       <!-- Form groups used in grid -->
-      <form method="POST" action="{{ url('drugOut/update',$getDetailDrugOut[0]->id) }}" >
+      <form method="POST" action="{{ url('drugOut/update',$getDetailDrugOut->id) }}" >
         @method('PUT')
         @csrf
         <div class="row">
@@ -18,7 +18,7 @@
               <label class="form-control-label" for="example2cols1Input">Nama Obat</label>
               <select class="form-control" name="drug_id" id="drug" data-toggle="select">
                 @foreach ($getAllDrug as $item)
-                <option value="{{ $item->id }}" @if ($getDetailDrugOut[0]->drug_id == $item->id ) selected @endif >{{ $item->name }} | Rp {{ $item->price }}</option>
+                <option value="{{ $item->id }}" @if ($getDetailDrugOut->drug_id == $item->id ) selected @endif >{{ $item->name }} | Rp {{ $item->price }}</option>
                 @endforeach
               </select>
               @error('drug_id')
@@ -33,7 +33,7 @@
             <div class="col-md-6">
             <div class="form-group">
               <label class="form-control-label" for="exampleFormControlTextarea1">Tanggal Keluar (mm-dd-yyyy)</label>
-              <input class="form-control" type="date" name="date_out" value="{{ $getDetailDrugOut[0]->date_out }}" id="example-date-input">
+              <input class="form-control" type="date" name="date_out" value="{{ $getDetailDrugOut->date_out }}" id="example-date-input">
             </div>
           </div>
         </div>
@@ -41,7 +41,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label class="form-control-label" for="exampleFormControlTextarea1">Kuantitas</label>
-              <input type="number" id="amount" name="amount" class="form-control  @error('name') is-invalid @enderror" id="example2cols1Input" placeholder="Paracetamol" value="{{ $getDetailDrugOut[0]->amount }}">
+              <input type="number" id="amount" name="amount" class="form-control  @error('name') is-invalid @enderror" id="example2cols1Input" placeholder="Paracetamol" value="{{ $getDetailDrugOut->amount }}">
               @error('amounrt')
               <span class="text-danger font-weight-bold text-sm">
                 {{ $message }}

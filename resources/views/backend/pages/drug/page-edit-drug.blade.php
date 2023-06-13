@@ -9,14 +9,14 @@
     <!-- Card body -->
     <div class="card-body">
       <!-- Form groups used in grid -->
-      <form method="POST" action="{{ url('drug/update',$getDetailDrug[0]->id) }}" >
+      <form method="POST" action="{{ url('drug/update',$getDetailDrug->id) }}" >
         @method('PUT')
         @csrf
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
               <label class="form-control-label" for="example2cols1Input">Nama Obat</label>
-              <input type="text" name="name" class="form-control  @error('name') is-invalid @enderror" id="example2cols1Input" placeholder="Paracetamol" value="{{ $getDetailDrug[0]->name }}">
+              <input type="text" name="name" class="form-control  @error('name') is-invalid @enderror" id="example2cols1Input" placeholder="Paracetamol" value="{{ $getDetailDrug->name }}">
               @error('name')
               <span class="text-danger font-weight-bold text-sm">
                 {{ $message }}
@@ -29,7 +29,7 @@
               <label class="form-control-label" for="exampleFormControlTextarea1">Jenis Obat</label>
               <select class="form-control" name="type_id" data-toggle="select">
                 @foreach ($getAllType as $item)
-                <option value="{{ $item->id }}" @if ($getDetailDrug[0]->type_id == $item->id ) selected @endif >{{ $item->name }}</option>
+                <option value="{{ $item->id }}" @if ($getDetailDrug->type_id == $item->id ) selected @endif >{{ $item->name }}</option>
                 @endforeach
               </select>
             </div>
@@ -39,7 +39,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label class="form-control-label" for="exampleFormControlTextarea1">Deskripsi</label>
-              <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3" placeholder="Lorem Ipsum">{{ $getDetailDrug[0]->description }}</textarea>
+              <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3" placeholder="Lorem Ipsum">{{ $getDetailDrug->description }}</textarea>
               @error('description')
               <span class="text-danger font-weight-bold text-sm">
                 {{ $message }}
@@ -50,7 +50,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label class="form-control-label" for="example2cols1Input">Harga Obat</label>
-              <input type="number" name="price" class="form-control  @error('price') is-invalid @enderror" id="example2cols1Input" placeholder="5000" value="{{ $getDetailDrug[0]->price }}">
+              <input type="number" name="price" class="form-control  @error('price') is-invalid @enderror" id="example2cols1Input" placeholder="5000" value="{{ $getDetailDrug->price }}">
               @error('price')
               <span class="text-danger font-weight-bold text-sm">
                 {{ $message }}
