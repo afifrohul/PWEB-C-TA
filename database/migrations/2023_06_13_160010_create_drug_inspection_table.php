@@ -17,7 +17,6 @@ return new class extends Migration
             $table->primary(['drug_id', 'inspection_id']);
             $table->foreign('drug_id')->references('id')->on('drugs')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('inspection_id')->references('id')->on('inspections')->cascadeOnUpdate()->cascadeOnDelete();
-
         });
     }
 
