@@ -2,8 +2,8 @@
 <div class="scrollbar-inner">
     <!-- Brand -->
     <div class="sidenav-header d-flex align-items-center">
-    <a class="navbar-brand" href="{{ url('/back-staff/dashboard') }}">
-        <h2 class="text-sm align-middle">Dashboard Admin</h2>
+    <a class="navbar-brand" href="/">
+        <img src="{{ asset('assets/img/Logo.png') }}" class="navbar-brand-img" alt="...">
     </a>
     <div class="ml-auto">
         <!-- Sidenav toggler -->
@@ -28,17 +28,17 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link @if (Request::segment(2) == 'patient') active @endif" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
+            <a class="nav-link @if (Request::segment(2) == 'patient') active @endif" href="#navbar-patient" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-patient">
             <i class="ni ni-circle-08 text-success"></i>
             <span class="nav-link-text">Pasien</span>
             </a>
-            <div class="collapse" id="navbar-examples">
+            <div class="collapse" id="navbar-patient">
             <ul class="nav nav-sm flex-column">
                 <li class="nav-item ">
-                <a href="{{ url('/back-doctor/patient') }}" class="nav-link ">List Pasien</a>
+                <a href="{{ url('/back-staff/patient') }}" class="nav-link ">List Pasien</a>
                 </li>
                 <li class="nav-item">
-                <a href="{{ url('/back-doctor/patient/create') }}" class="nav-link">Tambah Pasien</a>
+                <a href="{{ url('/back-staff/patient/create') }}" class="nav-link">Tambah Pasien</a>
                 </li>
             </ul>
             </div>
@@ -96,7 +96,7 @@
         <li class="nav-item">
             <a class="nav-link @if (Request::segment(2) == 'drugOut') active @endif" href="#navbar-tables" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-tables">
             <i class="ni ni-align-left-2 text-default"></i>
-            <span class="nav-link-text">Pengerluaran Obat</span>
+            <span class="nav-link-text">Pengeluaran Obat</span>
             </a>
             <div class="collapse" id="navbar-tables">
             <ul class="nav nav-sm flex-column">
@@ -105,6 +105,19 @@
                 </li>
                 <li class="nav-item">
                 <a href="{{ url('/back-staff/drugOut/create') }}" class="nav-link">Tambah Pengeluaran Obat</a>
+                </li>
+            </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @if (Request::segment(2) == 'drugList') active @endif" href="#navbar-drugList" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-drugList">
+            <i class="ni ni-bullet-list-67 text-default"></i>
+            <span class="nav-link-text">Obat Pasien</span>
+            </a>
+            <div class="collapse" id="navbar-drugList">
+            <ul class="nav nav-sm flex-column">
+                <li class="nav-item">
+                <a href="{{ url('/back-staff/drugList') }}" class="nav-link">List Obat Pasien</a>
                 </li>
             </ul>
             </div>

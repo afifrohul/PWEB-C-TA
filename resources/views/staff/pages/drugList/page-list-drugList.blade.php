@@ -1,4 +1,4 @@
-@extends('doctor.layouts.app')
+@extends('staff.layouts.app')
 @section('content')
 
 <div class="row">
@@ -14,10 +14,11 @@
             <tr>
                 <th>No</th>
                 <th>Nama Pasien</th>
+                <th>Nama Dokter</th>
                 <th>Tanggal Pemeriksaan</th>
                 <th>Diagnosis</th>
                 <th>Obat</th>
-                <th>Catatan Dokter</th>
+                <th>Status</th>
                 <th>Opsi</th>
             </tr>
             </thead>
@@ -27,7 +28,9 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $item->patient->name }}</td>
+                <td>{{ $item->doctor->name }}</td>
                 <td>{{ $item->date_inspection }}</td>
+                
                 <td>
                     {{-- <ol> --}}
                     @foreach ($item->diagnoses as $diagnosis)
@@ -42,13 +45,25 @@
                     @endforeach
                     {{-- </ol> --}}
                 </td>
-                <td>{{Str::limit($item->note, 25)}}</td>
                 <td>
+                    @if ($item->status == 'unlisted')
+                    <div class="btn btn-danger"> {{ $item->status }} </div>
+                    @endif
+
+                    @if ($item->status == 'listed')
+                    <div class="btn btn-success"> {{ $item->status }} </div>
+                    @endif
+                </td>
+                <td>
+                    @if ($item->status == 'unlisted')
+                        
+                    
                     <div class="row">
-                        <form method="POST" class="inline mr-2" action="{{ url('back-doctor/inspection/show',$item->id) }}">
+                        <form method="POST" class="inline mr-2" action="{{ url('back-staff/drugList/update',$item->id) }}">
+                            @method('PUT')
                             @csrf
-                            <button class="btn btn-icon btn-primary" type="submit">
-                                <span class="btn-inner--icon"><i class="fa fa-eye"></i></span>
+                            <button class="btn btn-icon btn-primary" type="submit" onclick="return confirm('Pengeluaran obat sudah di list?')">
+                                <span class="btn-inner--icon"><i class="fa fa-check"></i></span>
                             </button>
                         </form>
                         {{-- <form method="POST" class="inline" action="{{ url('back-doctor/drug/destroy',$item->id) }}">
@@ -59,6 +74,7 @@
                             </button>
                         </form> --}}
                     </div>
+                    @endif
                 </td>
             </tr>
             @endforeach

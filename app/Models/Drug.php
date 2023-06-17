@@ -26,4 +26,9 @@ class Drug extends Model
     {
         return $this->hasMany(DrugOut::class);
     }
+
+    public function inspection()
+    {
+        return $this->belongsToMany(Inspection::class, 'drug_inspection');
+    }
 }

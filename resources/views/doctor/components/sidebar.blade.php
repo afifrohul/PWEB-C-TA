@@ -2,8 +2,8 @@
 <div class="scrollbar-inner">
     <!-- Brand -->
     <div class="sidenav-header d-flex align-items-center">
-    <a class="navbar-brand" href="{{ url('/back-doctor/dashboard') }}">
-        <h1 class="text-sm align-middle">Dashboard Admin</h1>
+    <a class="navbar-brand" href="/">
+        <img src="{{ asset('assets/img/Logo.png') }}" class="navbar-brand-img" alt="...">
     </a>
     <div class="ml-auto">
         <!-- Sidenav toggler -->
@@ -26,6 +26,22 @@
             <i class="ni ni-shop text-primary"></i>
             <span class="nav-link-text">Dashboards</span>
             </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @if (Request::segment(2) == 'diagnosis') active @endif" href="#navbar-diagnosis" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-diagnosis">
+            <i class="ni ni-sound-wave text-danger"></i>
+            <span class="nav-link-text">Diagnosis</span>
+            </a>
+            <div class="collapse" id="navbar-diagnosis">
+            <ul class="nav nav-sm flex-column">
+                <li class="nav-item ">
+                <a href="{{ url('/back-doctor/diagnosis') }}" class="nav-link ">List Diagnosis</a>
+                </li>
+                <li class="nav-item">
+                <a href="{{ url('/back-doctor/diagnosis/create') }}" class="nav-link">Tambah Diagnosis</a>
+                </li>
+            </ul>
+            </div>
         </li>
         <li class="nav-item">
             <a class="nav-link @if (Request::segment(2) == 'inspection') active @endif" href="#navbar-inspection" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-inspection">

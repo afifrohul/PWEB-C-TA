@@ -35,8 +35,44 @@ class UserSeeder extends Seeder
         $admin->assignRole('admin');
         
         $doctor = new \App\Models\User();
-        $doctor->name = 'doctor';
-        $doctor->email = 'doctor@gmail.com';
+        $doctor->name = 'Dr. Afif';
+        $doctor->email = 'afif_doctor@gmail.com';
+        $doctor->email_verified_at = now();
+        $doctor->password = \Hash::make('doctorafif');
+        $doctor->remember_token = \Str::random(60);
+        $doctor->created_at = now();
+        $doctor->updated_at = now();
+        $doctor->save();
+        event(new Registered($doctor));
+        $doctor->assignRole('doctor');
+
+        $doctor = new \App\Models\User();
+        $doctor->name = 'Dr. Ikbar';
+        $doctor->email = 'ikbar_doctor@gmail.com';
+        $doctor->email_verified_at = now();
+        $doctor->password = \Hash::make('doctorikbar');
+        $doctor->remember_token = \Str::random(60);
+        $doctor->created_at = now();
+        $doctor->updated_at = now();
+        $doctor->save();
+        event(new Registered($doctor));
+        $doctor->assignRole('doctor');
+        
+        $doctor = new \App\Models\User();
+        $doctor->name = 'Dr. Nilla';
+        $doctor->email = 'nilla_doctor@gmail.com';
+        $doctor->email_verified_at = now();
+        $doctor->password = \Hash::make('doctornilla');
+        $doctor->remember_token = \Str::random(60);
+        $doctor->created_at = now();
+        $doctor->updated_at = now();
+        $doctor->save();
+        event(new Registered($doctor));
+        $doctor->assignRole('doctor');
+        
+        $doctor = new \App\Models\User();
+        $doctor->name = 'Dr. Person';
+        $doctor->email = 'person_doctor@gmail.com';
         $doctor->email_verified_at = now();
         $doctor->password = \Hash::make('doctor01');
         $doctor->remember_token = \Str::random(60);

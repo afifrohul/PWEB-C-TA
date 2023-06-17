@@ -50,7 +50,38 @@ class InspectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,
+        [
+            'patient_id' => 'required',
+            'date_inspection' => 'required',
+        ],
+        [
+            'required' => ':attribute harus diisi.',
+        ],
+        [
+            'patient_id' => 'Nama Pasien',
+            'date_inspection' => 'Tanggal Pemeriksaan'
+        ]);
+
+        try {
+            $inspection = Inspection::create([
+                'patient_id' => $request->patient_id,
+                'doctor_id' => auth()->user()->id,
+                'date_inspection' => $request->date_inspection,
+                'note' => $request->note,
+                'status'=> 'unlisted'
+            ]);
+
+            $inspection->diagnoses()->attach($request->diagnoses);
+            $inspection->drugs()->attach($request->drugs);
+            
+            return redirect('/back-doctor/inspection')->withStatus('Berhasil menambah data.');
+
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
+        }
     }
 
     /**
@@ -58,7 +89,14 @@ class InspectionController extends Controller
      */
     public function show(string $id)
     {
-        //
+        try {
+            $this->param['getDetailInspection'] = Inspection::find($id);
+            return view('doctor.pages.inspection.page-show-inspection', $this->param);
+        } catch(\Throwable $e){
+            return redirect()->back()->withError($e->getMessage());
+        } catch(\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
     }
 
     /**

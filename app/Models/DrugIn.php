@@ -15,4 +15,13 @@ class DrugIn extends Model
     {
         return $this->belongsTo(Drug::class);
     }
+
+    protected static function booted()
+    {
+        static::saved(function ($drugIn) {
+            $drug = Drug::find($drugIn->drug_id);
+            $drug->stock += $drugIn->amount;
+            $drug->save();
+        });
+    }
 }

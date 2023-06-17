@@ -18,9 +18,18 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
+    private $param;
+    public function index(): View
+    {
+        $this->param['getAllPatient'] = User::whereHas('roles', function($thisRole){
+            $thisRole->where('name', 'patient');
+        })->select('users.*')->get();
+        return view('staff.pages.patient.page-list-patient', $this->param);
+    }
+    
     public function create(): View
     {
-        return view('auth.register');
+        return view('staff.pages.patient.page-add-patient');
     }
 
     /**
@@ -43,9 +52,7 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        $user->assignRole('patient');
+        return redirect('/back-staff/patient')->withStatus('Daftar Akun Berhasil!');
     }
 }

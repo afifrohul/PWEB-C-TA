@@ -1,24 +1,12 @@
 @extends('doctor.layouts.app')
 @section('extraCSS')
-  <style>
-    .select2-container--default .select2-selection--multiple .select2-selection__choice{
-    font-size: .875rem;
-    line-height: 1.5rem;
-    display: inline-flex;
-    margin: 0 0 0.25rem 0.25rem;
-    padding: 0 1.6rem;
-    color: #ffffff;
-    border: none;
-    border-radius: 0.25rem;
-    background-color: #5e72e4;
-    }
-
-    .select2-container--default .select2-selection--multiple .select2-selection__choice__remove{
-    margin-left: 0.5rem;
-    color: #ffffff;
-    order: 2;
-    }
-  </style>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css"
+  integrity="sha512-pTaEn+6gF1IeWv3W1+7X7eM60TFu/agjgoHmYhAfLEU8Phuf6JKiiE8YmsNC0aCgQv4192s4Vai8YZ6VNM6vyQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
 @endsection
 
 @section('content')
@@ -37,7 +25,8 @@
           <div class="col-md-6">
             <div class="form-group">
               <label class="form-control-label" for="example2cols1Input">Nama Pasien</label>
-              <select class="form-control" name="patient_id" data-toggle="select">
+              <select class="" name="patient_id" id="normalize">
+                <option value="">---Pilih Nama Pasien--</option>
                 @foreach ($getAllPatient as $item)
                 <option value="{{ $item->id }}" >{{ $item->name }}</option>
                 @endforeach
@@ -60,8 +49,8 @@
           <div class="col-md-6">
             <div class="form-group">
               <label class="form-control-label" for="exampleFormControlTextarea1">Catatan Dokter</label>
-              <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="6" placeholder="Lorem Ipsum"></textarea>
-              @error('description')
+              <textarea class="form-control" name="note" id="exampleFormControlTextarea1" rows="6" placeholder="Lorem Ipsum"></textarea>
+              @error('note')
               <span class="text-danger font-weight-bold text-sm">
                 {{ $message }}
               </span>
@@ -72,7 +61,7 @@
             <div class="row-12">
               <div class="form-group">
               <label class="form-control-label" for="example2cols1Input">Diagnosis Penyakit</label>
-              <select class="js-example-basic-multiple js-states form-control multi" multiple="multiple" name="diagnoses[]" data-toggle="select">
+              <select class="" id="remove-button" multiple="multiple" name="diagnoses[]" data-toggle="select">
                 @foreach ($getAllDiagnosis as $item)
                 <option value="{{ $item->id }}" >{{ $item->name }}</option>
                 @endforeach
@@ -87,7 +76,7 @@
             <div class="row-12">
               <div class="form-group">
               <label class="form-control-label" for="example2cols1Input">Obat</label>
-              <select class="form-control multi" name="drugs[]" multiple="multiple" data-toggle="select">
+              <select class="" id="remove-button2" name="drugs[]" multiple="multiple" data-toggle="select">
                 @foreach ($getAllDrug as $item)
                 <option value="{{ $item->id }}" >{{ $item->name }}</option>
                 @endforeach
@@ -112,44 +101,38 @@
 </div>
 @endsection
 @section('extraJS')
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"
+  integrity="sha512-IOebNkvA/HZjMM7MxL0NYeLYEalloZ8ckak+NDtOViP7oiYzG5vn6WVXyrJDiJPhl4yRdmNAG49iuLmhkUdVsQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
 
 <script>
-  function matchStart(params, data) {
-  // If there are no search terms, return all of the data
-  if ($.trim(params.term) === '') {
-    return data;
-  }
+  $('#normalize').selectize();
 
-  // Skip if there is no 'children' property
-  if (typeof data.children === 'undefined') {
-    return null;
-  }
+  $("#remove-button").selectize({
+  plugins: ["remove_button"],
+  delimiter: ",",
+  persist: false,
+  create: function (input) {
+    return {
+        value: input,
+        text: input,
+    };
+  },
+});
 
-  // `data.children` contains the actual options that we are matching against
-  var filteredChildren = [];
-  $.each(data.children, function (idx, child) {
-    if (child.text.toUpperCase().indexOf(params.term.toUpperCase()) == 0) {
-      filteredChildren.push(child);
-    }
-  });
-
-  // If we matched any of the timezone group's children, then set the matched children on the group
-  // and return the group object
-  if (filteredChildren.length) {
-    var modifiedData = $.extend({}, data, true);
-    modifiedData.children = filteredChildren;
-
-    // You can return modified objects from here
-    // This includes matching the `children` how you want in nested data sets
-    return modifiedData;
-  }
-
-  // Return `null` if the term should not be displayed
-  return null;
-}
-
-$(".multi").select2({
-  matcher: matchStart
+$("#remove-button2").selectize({
+  plugins: ["remove_button"],
+  delimiter: ",",
+  persist: false,
+  create: function (input) {
+    return {
+        value: input,
+        text: input,
+    };
+  },
 });
 </script>
     

@@ -39,13 +39,13 @@
                                 <span class="btn-inner--icon"><i class="fa fa-pen"></i></span>
                             </button>
                         </form>
-                        <form method="POST" class="inline" action="{{ url('back-staff/drug/destroy',$item->id) }}">
+                        {{-- <form method="POST" class="inline" action="{{ url('back-staff/drug/destroy',$item->id) }}">
                             @method('delete')
                             @csrf
                             <button class="btn btn-icon btn-danger" type="submit" onclick="return confirm('Hapus Data ?')">
                                 <span class="btn-inner--icon"><i class="fa fa-trash"></i></span>
                             </button>
-                        </form>
+                        </form> --}}
                     </div>
                 </td>
             </tr>

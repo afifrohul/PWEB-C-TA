@@ -32,7 +32,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label class="form-control-label" for="exampleFormControlTextarea1">Tanggal Masuk (mm-dd-yyyy)</label>
-              <input class="form-control" type="date" name="date_in" value="2023-06-02" id="example-date-input">
+              <input class="form-control" type="date" name="date_in" id="example-date-input">
             </div>
           </div>
         </div>

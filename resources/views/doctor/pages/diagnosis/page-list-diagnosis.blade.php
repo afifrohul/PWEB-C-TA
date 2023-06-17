@@ -1,43 +1,36 @@
-@extends('staff.layouts.app')
+@extends('doctor.layouts.app')
 @section('content')
-
 <div class="row">
     <div class="col">
     <div class="card">
         <!-- Card header -->
         <div class="card-header">
-        <h3 class="mb-0">List Pemasukan Obat</h3>
+        <h3 class="mb-0">List Diagnosis</h3>
         </div>
         <div class="table-responsive py-4">
         <table class="table table-flush" id="datatable-buttons">
             <thead class="thead-light">
             <tr>
                 <th>No</th>
-                <th>Nama Obat</th>
-                <th>Tanggal Keluar</th>
-                <th>Kuantitas</th>
-                <th>Total Harga</th>
+                <th>Diagnosis</th>
                 <th>Opsi</th>
             </tr>
             </thead>
             <tbody>
-            @foreach ($getAllDrugOut as $item)
+            @foreach ($getAllDiagnosis as $item)
                 
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $item->drug->name }}</td>
-                <td>{{ $item->date_out }}</td>
-                <td>{{ $item->amount }}</td>
-                <td>{{ $item->total_price }}</td>
+                <td>{{ $item->name }}</td>
                 <td>
                     <div class="row">
-                        <form method="POST" class="inline mr-2" action="{{ url('back-staff/drugOut/edit',$item->id) }}">
+                        <form method="POST" class="inline mr-2" action="{{ url('back-doctor/diagnosis/edit',$item->id) }}">
                             @csrf
                             <button class="btn btn-icon btn-primary" type="submit">
                                 <span class="btn-inner--icon"><i class="fa fa-pen"></i></span>
                             </button>
                         </form>
-                        {{-- <form method="POST" class="inline" action="{{ url('back-staff/drugOut/destroy',$item->id) }}">
+                        {{-- <form method="POST" class="inline" action="{{ url('back-doctor/diagnosis/destroy',$item->id) }}">
                             @method('delete')
                             @csrf
                             <button class="btn btn-icon btn-danger" type="submit" onclick="return confirm('Hapus Data ?')">

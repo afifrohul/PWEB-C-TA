@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('patient_id')->constrained('users');
             $table->foreignId('doctor_id')->constrained('users');
             $table->date('date_inspection');
-            $table->foreignId('diagnosis_id')->constrined('diagnoses');
-            $table->foreignId('drug_id')->constrined('drugs');
+            // $table->foreignId('diagnosis_id')->constrined('diagnoses');
+            // $table->foreignId('drug_id')->constrined('drugs');
             $table->text('note')->nullable();
             $table->enum('status', ['listed', 'unlisted']);
             $table->timestamps();

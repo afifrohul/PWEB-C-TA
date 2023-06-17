@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Diagnosis extends Model
 {
     use HasFactory;
+
+    public function inspection()
+    {
+        return $this->belongsToMany(Inspection::class, 'diagnosis_inspection');
+    }
 }
